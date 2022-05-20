@@ -49,6 +49,7 @@ export default function Processo() {
 
   async function handleDel() {
     await deleteProcesso(processoDel)
+    closeModal()
   }
 
 
@@ -59,7 +60,7 @@ export default function Processo() {
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="flex flex-row align-middle justify-center">
-                    <div className="col-span-6">
+                    <div className="col-span-10">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                         Número do processo:
                       </label>
@@ -67,7 +68,7 @@ export default function Processo() {
                         type="text"
                         name="numero"
                         id="numero"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
                   </div>

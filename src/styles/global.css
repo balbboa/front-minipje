@@ -4,4 +4,7 @@
 
 body {
   background-color: #e9cfac;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
