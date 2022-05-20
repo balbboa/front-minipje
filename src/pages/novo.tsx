@@ -4,22 +4,11 @@ import { useState } from 'react'
 
 export default function NovoProcesso() {
 
-  const [isOpen, setIsOpen] = useState<any>(false)
   const [processo, SetProcesso] = useState<any>()
-  const [processoDel, SetProcessoDel] = useState<any>()
 
-
-  function closeModal() {
-    setIsOpen(false)
-  }
-
-  function openModal() {
-    setIsOpen(true)
-  }
-
-  const addProcesso = async (id: number) => {
+  const addProcesso = async (obj) => {
     try {
-    const res = await axios.post('https://pacific-shelf-02670.herokuapp.com/processo/'+id)
+    const res = await axios.post('https://pacific-shelf-02670.herokuapp.com/processo/', obj)
     SetProcesso(res.data) 
     console.log(processo)
     } 
@@ -30,9 +19,16 @@ export default function NovoProcesso() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const id = e.target.elements.numero.value;
-    
-    await addProcesso(id)
+    const obj = {
+      date : e.target.elements.date.value,
+      description : e.target.elements.description.value,
+      name : e.target.elements.name.value,
+      numero : e.target.elements.numero.value,
+      valorCausa : e.target.elements.valorCausa.value,
+      magistradoID : e.target.elements.magistradoID.value,
+    }
+    console.log(obj)
+    await addProcesso(obj)
   }
 
   return (
@@ -44,40 +40,40 @@ export default function NovoProcesso() {
                   <div className="flex flex-row align-middle">
                     <div className="mr-5">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                        Número do processo:
+                        Data do processo:
                       </label>
                       <input
                         type="text"
-                        name="numero"
-                        id="numero"
+                        name="date"
+                        id="date"
                         className="mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
                     <div className="mr-5">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                        Número do processo:
+                        Descrição do processo:
                       </label>
                       <input
                         type="text"
-                        name="numero"
-                        id="numero"
+                        name="description"
+                        id="description"
                         className="mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
                     <div className="mr-5">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                        Número do processo:
+                        Nome do processo:
                       </label>
                       <input
                         type="text"
-                        name="numero"
-                        id="numero"
+                        name="name"
+                        id="name"
                         className="mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
                   </div>
 
-                  <div className="flex flex-row align-middle">
+                  <div className="flex flex-row align-middle mt-4">
                     <div className="mr-5">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                         Número do processo:
@@ -91,23 +87,23 @@ export default function NovoProcesso() {
                     </div>
                     <div className="mr-5">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                        Número do processo:
+                        Valor da causa:
                       </label>
                       <input
                         type="text"
-                        name="numero"
-                        id="numero"
+                        name="valorCausa"
+                        id="valorCausa"
                         className="mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
                     <div className="mr-5">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                        Número do processo:
+                        ID do magistrado:
                       </label>
                       <input
                         type="text"
-                        name="numero"
-                        id="numero"
+                        name="magistradoID"
+                        id="magistradoID"
                         className="mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
