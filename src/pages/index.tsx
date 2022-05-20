@@ -127,6 +127,13 @@ export default function Home() {
                     >
                       Processos:
                     </Dialog.Title>
+                    <div className="mt-2">
+                    {listProcesso && listProcesso.length>0 && listProcesso?.map( item =>(
+                      <ul key={item.id}>
+                        <li>ID: {item.id} - Número: {item.numero}</li>
+                      </ul>
+                    ))}
+                    </div>
                     <div className="mt-4 text-center">
                       <button onClick={closeModal}
                           className="inline-flex justify-center rounded-md border border-transparent bg-orange-100 px-4 py-2 text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
