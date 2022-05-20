@@ -18,9 +18,9 @@ export default function Processo() {
     setIsOpen(true)
   }
 
-  const getProcesso = async (id: number) => {
+  const getProcesso = async (numero: any) => {
     try {
-    const res = await axios.get('https://pacific-shelf-02670.herokuapp.com/processo/'+id)
+    const res = await axios.get('https://pacific-shelf-02670.herokuapp.com/processo/pesquisarPor?numero='+numero)
     SetProcesso(res.data) 
     console.log(processo)
     } 
@@ -31,7 +31,7 @@ export default function Processo() {
 
   const deleteProcesso = async (id: number) => {
     try {
-    await axios.delete('https://pacific-shelf-02670.herokuapp.com/processo/'+id)
+      await axios.delete('https://pacific-shelf-02670.herokuapp.com/processo/'+processo?.id)
     } 
     catch (err){
       console.log(err) 
@@ -40,11 +40,11 @@ export default function Processo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const id = e.target.elements.numero.value;
+    const numero = e.target.elements.numero.value;
     
-    await getProcesso(id)
+    await getProcesso(numero)
 
-    SetProcessoDel(id)
+    SetProcessoDel(numero)
   }
 
   async function handleDel() {
