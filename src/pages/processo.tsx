@@ -7,8 +7,6 @@ export default function Processo() {
 
   const [isOpen, setIsOpen] = useState<any>(false)
   const [processo, SetProcesso] = useState<any>()
-  const [processoDel, SetProcessoDel] = useState<any>()
-
 
   function closeModal() {
     setIsOpen(false)
@@ -29,7 +27,7 @@ export default function Processo() {
     } 
   }
 
-  const deleteProcesso = async (id: number) => {
+  const deleteProcesso = async () => {
     try {
       await axios.delete('https://pacific-shelf-02670.herokuapp.com/processo/'+processo?.id)
     } 
@@ -41,15 +39,12 @@ export default function Processo() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const numero = e.target.elements.numero.value;
-    
-    await getProcesso(numero)
-
-    SetProcessoDel(numero)
+    await getProcesso(numero);
   }
 
   async function handleDel() {
-    await deleteProcesso(processoDel)
-    closeModal()
+    await deleteProcesso();
+    closeModal();
   }
 
 
@@ -120,7 +115,7 @@ export default function Processo() {
                               as="h3"
                               className="text-lg font-bold text-center text-black"
                             >
-                              Processo {processo?.numero}
+                              Processo nº {processo?.numero}
                             </Dialog.Title>
                             <div className="mt-2">
                               <ul className="text-lg text-gray-500">
@@ -143,13 +138,21 @@ export default function Processo() {
                               >
                                 Voltar
                               </button>
-
+                              <Link href="/">
+                                <button
+                                  type="button"
+                                  className="inline-flex justify-center py-2 px-4 mr-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                  onClick={handleDel}
+                                >
+                                  Deletar
+                                </button>
+                              </Link>
                               <button
                                 type="button"
-                                className="inline-flex justify-center py-2 px-4 mr-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                className="inline-flex justify-center py-2 px-4 mr-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                                 onClick={handleDel}
                               >
-                                Deletar
+                                Editar
                               </button>
                             </div>
                           </Dialog.Panel>
@@ -157,7 +160,7 @@ export default function Processo() {
                       </div>
                     </div>
                   </Dialog>
-                </Transition>
+                </Transition>    
               </div>
             </form>
           </div>
