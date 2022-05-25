@@ -6,6 +6,7 @@ import { Fragment, useState } from 'react';
 import Create from '../../public/add-file.png';
 import List from '../../public/list.png';
 import Search from '../../public/seo.png';
+import Container from '../components/container';
 
 
 export default function Home() {
@@ -38,6 +39,7 @@ export default function Home() {
   }
 
   return (
+  <Container title="MiniPJe">
   <div className="mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
     <h2 className="text-2xl font-extrabold text-black text-center">Mini PJe</h2>
     <div className="flex flex-row justify-center">
@@ -150,5 +152,6 @@ export default function Home() {
       </div>
     </div>
   </div>
+  </Container>
   )
 }

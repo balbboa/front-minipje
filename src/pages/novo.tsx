@@ -2,6 +2,7 @@ import { Dialog, Transition } from "@headlessui/react"
 import axios from "axios"
 import Link from 'next/link'
 import { Fragment, useState } from 'react'
+import Container from "../components/container"
 
 export default function NovoProcesso() {
   
@@ -39,10 +40,12 @@ export default function NovoProcesso() {
       magistradoID : e.target.elements.magistradoID.value,
     }
     console.log(obj)
+    
     await addProcesso(obj)
   }
 
   return (
+    <Container title="MiniPJe - Criar processo">
         <div className="flex flex-col">
           <div className="my-40 mx-auto">
             <form onSubmit={handleSubmit}>
@@ -190,6 +193,6 @@ export default function NovoProcesso() {
             </form>
           </div>
     </div>
-
+    </Container>
   )
 }
